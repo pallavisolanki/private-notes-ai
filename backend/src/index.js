@@ -3,14 +3,9 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 import cors from "cors";
 import noteRoutes from "./routes/note.routes.js";
-import path from "path";
-import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({ path: path.join(__dirname, "../.env") });
+dotenv.config();
 
 const app = express();
 const limiter = rateLimit({
@@ -19,7 +14,12 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.use(cors({ origin: process.env.FRONTEND_URL }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/notes", noteRoutes);
