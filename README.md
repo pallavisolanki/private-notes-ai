@@ -60,6 +60,7 @@ cd frontend
 npm install
 npm run dev
 
+
 🤖 AI Integration
 
 AI request is handled from backend only
@@ -74,16 +75,17 @@ Handles inference warm-up
 
 Graceful API error handling
 
+
 🔮 Future Improvements
 
-🔐 End-to-end encryption
+End-to-end encryption
 
-⏰ Configurable expiry
+Configurable expiry
 
-🗑 Delete-after-read option
+Delete-after-read option
 
-🐳 Dockerization
+Dockerization
 
-🧪 Add automated tests
+Add automated tests
 
-🧠 Switch to instruction-tuned LLM
+Switch to instruction-tuned LLM
