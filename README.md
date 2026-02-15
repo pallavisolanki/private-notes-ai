@@ -23,23 +23,16 @@ Tailwind CSS
 
 Axios
 
-✨ Features
+## Features
+-Create private note (≤ 500 characters)
+-Password-protected access
+-24-hour expiry
+-AI-generated summary (3–5 bullet points)
+-Summary caching
+-Rate limiting
+-Copy-to-clipboard
+-Structured error handling
 
-✅ Create private note (≤ 500 characters)
-
-🔐 Password-protected access
-
-⏳ 24-hour expiry
-
-🤖 AI-generated summary (3–5 bullet points)
-
-💾 Summary caching
-
-🚦 Rate limiting
-
-📋 Copy-to-clipboard
-
-📦 Structured error handling
 
 ⚙️ Setup Instructions
 🔹 Backend Setup
@@ -61,31 +54,23 @@ npm install
 npm run dev
 
 
-🤖 AI Integration
+## AI Integration
 
-AI request is handled from backend only
+-AI request is handled from backend only
+-Uses Hugging Face BART model
+-Summary normalized into clean bullet format
+-Results cached in database
+-Handles inference warm-up
+-Graceful API error handling
 
-Uses Hugging Face BART model
+## Future Improvements
 
-Summary normalized into clean bullet format
+- Add note expiry (time-based auto deletion)
+- Add rate limiting for summarization endpoint
+- Add encryption at rest for notes
+- Add hashing for passwords
+- Add unit and integration tests
+- Add analytics for note views
+- Improve prompt engineering for better summaries
+- Dockerize the application
 
-Results cached in database
-
-Handles inference warm-up
-
-Graceful API error handling
-
-
-🔮 Future Improvements
-
-End-to-end encryption
-
-Configurable expiry
-
-Delete-after-read option
-
-Dockerization
-
-Add automated tests
-
-Switch to instruction-tuned LLM
