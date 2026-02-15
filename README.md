@@ -4,15 +4,24 @@ A full-stack application that allows users to create secure private notes, share
 
 🚀 Tech Stack
 🔹 Backend
+
 Node.js
+
 Express
+
 PostgreSQL
+
 Prisma
+
 Hugging Face (BART model)
 
 🔹 Frontend
+
 React (with Vite)
+
 Tailwind CSS
+
+Axios
 
 ## Features
 -Create private note (≤ 500 characters)
