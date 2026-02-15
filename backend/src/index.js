@@ -14,11 +14,11 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "*",
-  })
-);
+app.use(cors({
+  origin: "https://private-notes-ai.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(express.json());
 

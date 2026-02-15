@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Note {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   content   String
   password  String
+  createdAt DateTime  @default(now())
   summary   String?
-  createdAt DateTime @default(now())
   expiresAt DateTime?
 }
