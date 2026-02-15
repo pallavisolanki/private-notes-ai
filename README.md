@@ -1,120 +1,99 @@
-📝 Private Notes with AI Summary
+# 📝 Private Notes with AI Summary
 
 A secure full-stack web application that allows users to create private notes, share them via a unique link and password, and generate AI-powered summaries after unlocking the note.
 
-🚀 Tech Stack
-🔹 Backend
+---
 
-Node.js
+## 🚀 Tech Stack
 
-Express
+### 🔹 Backend
 
-PostgreSQL
+- Node.js  
+- Express  
+- PostgreSQL  
+- Prisma ORM  
+- Hugging Face (BART summarization model)
 
-Prisma
+### 🔹 Frontend
 
-Hugging Face (BART summarization model)
+- React (powered by Vite)  
+- Tailwind CSS  
+- Axios  
 
-🔹 Frontend
+---
 
-React (powered by Vite)
+## ✨ Features
 
-Tailwind CSS
+- Create private notes (≤ 500 characters)
+- Auto-generated unique shareable URL
+- Secure password-protected access
+- 24-hour automatic note expiry
+- AI-generated summary (3–5 bullet points)
+- Summary caching (stored after first generation)
+- Rate limiting on AI endpoint
+- Copy-to-clipboard functionality
+- Structured API error handling
+- Graceful handling of AI inference warm-up
 
-Axios
+---
 
-✨ Features
+## 🔐 API Behavior
 
-Create private notes (≤ 500 characters)
+### 1️⃣ Create Note
 
-Auto-generated unique shareable URL
+- Validates input (non-empty, ≤ 500 characters)
+- Generates:
+  - Unique note ID
+  - Secure random password
+  - Expiry timestamp (24 hours)
+- Returns structured JSON response
 
-Secure password-protected access
+---
 
-24-hour automatic note expiry
+### 2️⃣ View Note
 
-AI-generated summary (3–5 bullet points)
+- Requires password verification
+- Returns:
+  - `200` → Note content (on success)
+  - `401` → Invalid password
+  - `404` → Note not found
+  - `410` → Note expired
 
-Summary caching (stored after first generation)
+---
 
-Rate limiting on AI endpoint
+### 3️⃣ Summarize Note
 
-Copy-to-clipboard functionality
+- AI call handled exclusively on backend
+- Uses Hugging Face BART model
+- Returns cached summary if already generated
+- Handles:
+  - Loading states
+  - API failures
+  - Invalid/empty AI responses
 
-Structured API error handling
+---
 
-Graceful handling of AI inference warm-up
+## ⚙️ Setup Instructions
 
-🔐 API Behavior
-1️⃣ Create Note
+### 🔹 Backend Setup
 
-Validates input (non-empty, ≤ 500 characters)
-
-Generates:
-
-Unique note ID
-
-Secure random password
-
-Expiry timestamp (24 hours)
-
-Returns structured JSON response
-
-2️⃣ View Note
-
-Requires password verification
-
-Returns:
-
-200 → Note content (on success)
-
-401 → Invalid password
-
-404 → Note not found
-
-410 → Note expired
-
-3️⃣ Summarize Note
-
-AI call handled exclusively on backend
-
-Uses Hugging Face BART model
-
-Returns cached summary if already generated
-
-Handles:
-
-Loading states
-
-API failures
-
-Invalid/empty AI responses
-
-⚙️ Setup Instructions
-🔹 Backend Setup
+```bash
 cd backend
 npm install
-
-
-Create .env file inside backend/:
+Create a .env file inside backend/:
 
 DATABASE_URL=your_postgres_url
 FRONTEND_URL=http://localhost:5173
 HF_API_KEY=your_key
-
-
 Run backend:
 
 npx prisma migrate dev
 npm run dev
-
 🔹 Frontend Setup
 cd frontend
 npm install
 npm run dev
-
 🧠 AI Integration
-
 LLM request handled strictly from backend (never from frontend)
 
 Uses Hugging Face BART summarization model
@@ -128,7 +107,6 @@ Handles model cold start (warm-up)
 Graceful fallback for AI failures
 
 🛠️ Architectural Decisions
-
 Prisma ORM for type-safe database access
 
 Password verification before note retrieval
@@ -141,8 +119,40 @@ Structured error response pattern for consistent frontend handling
 
 Rate limiting to prevent abuse of AI endpoint
 
-🔮 Future Improvements
+## 📁 Project Structure
 
+private-notes/
+│
+├── backend/
+│ ├── prisma/
+│ │ ├── migrations/
+│ │ └── schema.prisma
+│ │
+│ ├── src/
+│ │ ├── controllers/
+│ │ ├── routes/
+│ │ ├── services/
+│ │ └── index.js
+│ │
+│ └── package.json
+│
+├── frontend/
+│ ├── src/
+│ │ ├── pages/
+│ │ ├── api.js
+│ │ ├── App.jsx
+│ │ ├── main.jsx
+│ │ └── index.css
+│ │
+│ ├── index.html
+│ ├── tailwind.config.js
+│ ├── vite.config.js
+│ └── package.json
+│
+└── README.md
+
+
+🔮 Future Improvements
 Encrypt notes at rest
 
 Hash passwords using bcrypt
