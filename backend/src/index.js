@@ -27,7 +27,7 @@ app.use(limiter);
 // 2️⃣ CORS
 // -----------------------------
 app.use(cors({
-  origin: "https://private-notes-ai.vercel.app",
+  origin: ["https://private-notes-ai.vercel.app", "http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
