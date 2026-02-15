@@ -24,6 +24,7 @@ Tailwind CSS
 Axios
 
 ## Features
+
 -Create private note (≤ 500 characters)
 -Password-protected access
 -24-hour expiry
@@ -35,6 +36,7 @@ Axios
 
 
 ⚙️ Setup Instructions
+
 🔹 Backend Setup
 cd backend
 npm install
